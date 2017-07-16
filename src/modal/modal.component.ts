@@ -13,19 +13,19 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import _collection from 'lodash/collection';
-import {IkBs3ModalInstance} from "../modal-instance";
+import {IkBs3ModalInstance} from '../modal-instance';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'ik-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
 export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
-  @ViewChild("modalWrapper") modalWrapper;
-  @ViewChild("modalContent", {read: ViewContainerRef}) modalContent: ViewContainerRef;
+  @ViewChild('modalWrapper') modalWrapper;
+  @ViewChild('modalContent', {read: ViewContainerRef}) modalContent: ViewContainerRef;
 
   /*TODO закрытие модального окна по клику на подложке*/
-  @ViewChild("backdrop") backdrop;
+  @ViewChild('backdrop') backdrop;
 
   @Input() config: any;
   @Input() component: Component;
@@ -33,22 +33,10 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
   @Output() close = new EventEmitter();
   @Output() dismiss = new EventEmitter();
 
-  @HostListener("keyup", ['$event'])
-  onKeyUp(event: KeyboardEvent) {
-    if (this.config && this.config.keyboard && event.keyCode === 27) {
-      this.closeModal(false);
-    }
-  }
-
-  @HostListener('transitionend', ['$event'])
-  transitionEnd(event: TransitionEvent) {
-    if (this.closing) {
-      this.result();
-    }
-  }
-
-  closing: boolean = false;
+  closing = false;
   result: Function;
+  wrapperElem;
+  backdropElem;
 
   modalOpener;
 
@@ -58,11 +46,13 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.initChildComponent(this.modalContent, this.component, this.inputs);
-
+    this.wrapperElem = this.modalWrapper.nativeElement;
+    this.backdropElem = this.backdrop.nativeElement;
     /*TODO добавить в конфиг параметр "animate"*/
+    this.renderer.setStyle(this.wrapperElem, 'display', 'block');
     setTimeout(() => {
-      this.renderer.addClass(this.modalWrapper.nativeElement, 'in');
-      this.renderer.addClass(this.backdrop.nativeElement, 'in');
+      this.renderer.addClass(this.wrapperElem, 'in');
+      this.renderer.addClass(this.backdropElem, 'in');
     }, 0);
 
     this.modalOpener = document.activeElement;
@@ -72,7 +62,7 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
 
   initChildComponent(container: ViewContainerRef, component: Component, inputs: any) {
 
-    let modalInstanceProvider = ReflectiveInjector.resolve([{
+    const modalInstanceProvider = ReflectiveInjector.resolve([{
       provide: IkBs3ModalInstance,
       useValue: new IkBs3ModalInstance(
         res => this.closeModal(true, res),
@@ -80,13 +70,12 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
       )
     }]);
 
-    let injector = ReflectiveInjector.fromResolvedProviders(modalInstanceProvider, this.modalContent.parentInjector);
+    const injector = ReflectiveInjector.fromResolvedProviders(modalInstanceProvider, this.modalContent.parentInjector);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(<any>component);
+    const modalRef = container.createComponent(factory, null, injector);
+    const modalInstance: any = modalRef.instance;
 
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(<any>component);
-    let componentRef = container.createComponent(componentFactory, null, injector);
-    let modalInstance: any = componentRef.instance;
-
-    this.renderer.setStyle(componentRef.injector.get(ElementRef).nativeElement, 'display', 'block');
+    this.renderer.setStyle(modalRef.injector.get(ElementRef).nativeElement, 'display', 'block');
 
     _collection.each(inputs, (val, key) => {
       modalInstance[key] = val;
@@ -99,6 +88,20 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
     this.renderer.removeClass(this.modalWrapper.nativeElement, 'in');
     this.renderer.removeClass(this.backdrop.nativeElement, 'in');
   };
+
+  @HostListener('keyup', ['$event'])
+  onKeyUp(event: KeyboardEvent) {
+    if (this.config && this.config.keyboard && event.keyCode === 27) {
+      this.closeModal(false);
+    }
+  }
+
+  @HostListener('transitionend', ['$event'])
+  transitionEnd(event: TransitionEvent) {
+    if (this.closing) {
+      this.result();
+    }
+  }
 
   ngOnDestroy() {
     this.modalContent.clear();

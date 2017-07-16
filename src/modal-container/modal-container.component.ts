@@ -1,16 +1,16 @@
 import {Component, ComponentFactoryResolver, ViewChild, ViewContainerRef} from '@angular/core';
-import {IkBs3ModalService} from "../modal.service";
-import {IkBs3ModalComponent} from "../modal/modal.component";
-import {IModalObject} from "../modal-object";
+import {IkBs3ModalService} from '../modal.service';
+import {IkBs3ModalComponent} from '../modal/modal.component';
+import {IModalObject} from '../modal-object';
 
 @Component({
-  selector: 'ik-bs3-modal-container',
+  selector: 'ik-modal-container',
   templateUrl: './modal-container.component.html',
   styleUrls: ['./modal-container.component.css']
 })
 
 export class IkBs3ModalContainerComponent {
-  @ViewChild("modalContainer", {read: ViewContainerRef}) modalContainer: ViewContainerRef;
+  @ViewChild('modalContainer', {read: ViewContainerRef}) modalContainer: ViewContainerRef;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private modalService: IkBs3ModalService) {
     this.modalService.modalOpen.subscribe((compObject) => {
@@ -20,13 +20,13 @@ export class IkBs3ModalContainerComponent {
   }
 
   addModal(config: IModalObject) {
-    let factory = this.componentFactoryResolver.resolveComponentFactory(IkBs3ModalComponent);
-    let viewContainerRef = this.modalContainer;
-    let ngxModalComponentRef = viewContainerRef.createComponent(factory);
-    let ngxModalComponentInstance = <IkBs3ModalComponent>ngxModalComponentRef.instance;
-    let subscriptions = [];
+    const factory = this.componentFactoryResolver.resolveComponentFactory(IkBs3ModalComponent);
+    const viewContainerRef = this.modalContainer;
+    const ngxModalComponentRef = viewContainerRef.createComponent(factory);
+    const ngxModalComponentInstance = <IkBs3ModalComponent>ngxModalComponentRef.instance;
+    const subscriptions = [];
 
-    let closeModal = () => {
+    const closeModal = () => {
       ngxModalComponentRef.destroy();
       subscriptions.forEach(subs => subs.unsubscribe());
     };

@@ -1,11 +1,10 @@
 import {Component,  Input, OnInit} from '@angular/core';
-import {IkBs3ModalInstance} from "../modal-instance";
+import {IkBs3ModalInstance} from '../modal-instance';
 
 @Component({
-  selector: 'ik-bs3-modal-warning',
+  selector: 'ik-modal-warning',
   templateUrl: './modal-warning.component.html',
-  styleUrls: ['./modal-warning.component.css'],
-  host: {'class': 'modal-dialog modal-sm'}
+  styleUrls: ['./modal-warning.component.css']
 })
 export class IkBs3ModalWarningComponent implements OnInit {
   @Input() description;

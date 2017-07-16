@@ -2,20 +2,22 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {IkBs3Modal} from "./modal/modal.module";
-import {ModalContentComponent} from './modal-content/modal-content.component';
+import {IkBs3Modal} from '../../src/modal.module';
+import {RouterModule} from '@angular/router';
+import { LongModalComponent } from './long-modal/long-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalContentComponent
+    LongModalComponent,
   ],
   imports: [
     BrowserModule,
-    IkBs3Modal
+    IkBs3Modal,
+    RouterModule
   ],
   entryComponents: [
-    ModalContentComponent
+    LongModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

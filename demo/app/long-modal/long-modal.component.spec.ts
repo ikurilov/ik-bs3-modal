@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalContentComponent } from './modal-content.component';
+import { LongModalComponent } from './long-modal.component';
 
-describe('ModalContentComponent', () => {
-  let component: ModalContentComponent;
-  let fixture: ComponentFixture<ModalContentComponent>;
+describe('LongModalComponent', () => {
+  let component: LongModalComponent;
+  let fixture: ComponentFixture<LongModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalContentComponent ]
+      declarations: [ LongModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalContentComponent);
+    fixture = TestBed.createComponent(LongModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
