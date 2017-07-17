@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IkBs3ModalService} from '../../src/modal.service';
 import {LongModalComponent} from './long-modal/long-modal.component';
-import {ModalContentComponent} from "./modal-content/modal-content.component";
+import {ModalContentComponent} from './modal-content/modal-content.component';
 
 @Component({
   selector: 'app-root',

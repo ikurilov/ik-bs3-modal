@@ -29,10 +29,14 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
   @ViewChild('backdrop') backdrop;
 
   @Input() config: IIkBs3ModalConfig;
+  @Input() container: HTMLElement;
+  @Input() scrollWidth: number;
   @Input() component: Component;
   @Input() inputs: any;
   @Output() close = new EventEmitter();
   @Output() dismiss = new EventEmitter();
+
+  containerPaddingRight;
 
   closing = false;
   result: Function;
@@ -46,6 +50,11 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    if (this.container.scrollHeight > window.innerHeight) {
+      this.containerPaddingRight = window.getComputedStyle(this.container).paddingRight;
+      this.renderer.setStyle(this.container, 'paddingRight', `calc(${this.containerPaddingRight} + ${this.scrollWidth}px`);
+    }
+
     this.initChildComponent(this.modalContent, this.component, this.inputs);
     this.wrapperElem = this.modalWrapper.nativeElement;
     this.backdropElem = this.backdrop.nativeElement;
@@ -109,6 +118,7 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
     this.backdropElem = null;
     console.log('destroyed modal');
     this.modalContent.clear();
+    this.renderer.setStyle(this.container, 'paddingRight', this.containerPaddingRight);
     this.renderer.removeClass(document.body, 'modal-open');
     this.modalOpener.focus();
   }

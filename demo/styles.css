@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  /* for test scrollbar removing scrollbar */
+  padding: 0 50px;
+}
