@@ -104,6 +104,9 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.wrapperElem = null;
+    this.backdropElem = null;
+    console.log('destroyed modal');
     this.modalContent.clear();
     this.renderer.removeClass(document.body, 'modal-open');
     this.modalOpener.focus();
