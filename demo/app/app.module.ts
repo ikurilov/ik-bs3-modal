@@ -7,12 +7,14 @@ import {RouterModule} from '@angular/router';
 import { LongModalComponent } from './long-modal/long-modal.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import {FormsModule} from "@angular/forms";
+import { NestedModalsComponent } from './nested-modals/nested-modals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LongModalComponent,
     ModalContentComponent,
+    NestedModalsComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import {FormsModule} from "@angular/forms";
   ],
   entryComponents: [
     LongModalComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    NestedModalsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

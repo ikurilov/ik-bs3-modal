@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IkBs3ModalService} from '../../src/modal.service';
 import {LongModalComponent} from './long-modal/long-modal.component';
 import {ModalContentComponent} from './modal-content/modal-content.component';
+import {NestedModalsComponent} from "./nested-modals/nested-modals.component";
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,8 @@ export class AppComponent {
   open() {
     const content = this.isLong ? LongModalComponent : ModalContentComponent;
     this.ikModal.open(content, null, {size: this.size, backdrop: this.backdrop, keyboard: this.keyboard});
+  }
+  openNested() {
+    this.ikModal.open(NestedModalsComponent);
   }
 }

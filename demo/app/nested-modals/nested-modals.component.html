@@ -1,0 +1,14 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Modal content component</h4>
+  </div>
+  <div class="modal-body text-center">
+    This is parent modal component
+    <button class="btn btn-primary" (click)="openChild()">Open child modal</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="accept()">Save changes</button>
+  </div>
+</div>
