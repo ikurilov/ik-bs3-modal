@@ -3,16 +3,80 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">ik-modal</a>
     </div>
-
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-      </ul>
-    </div>
   </div>
 </nav>
-<div class="container-fluid text-center">
-  <button class="btn btn-primary">Open small modal</button>
-  <button class="btn btn-primary" (click)="open()" >Open long modal!</button>
+<div class="container-fluid">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Modal config</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-3"><div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [(ngModel)]="isLong"> Long modal
+              </label>
+            </div>
+          </div></div>
+          <div class="col-sm-3"><div class="form-group">
+            <label>Size of modal dialog</label>
+            <div class="radio">
+              <label>
+                <input type="radio" value="sm" [(ngModel)]="size">
+                Small
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" value="lg" [(ngModel)]="size">
+                Large
+              </label>
+            </div>
+          </div></div>
+          <div class="col-sm-3"><div class="form-group">
+            <label>Backdrop of modal dialog</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="backdrop" [value]="true" [(ngModel)]="backdrop">
+                True
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="backdrop" [value]="false" [(ngModel)]="backdrop">
+                False
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="backdrop" [value]="'static'" [(ngModel)]="backdrop">
+                Static
+              </label>
+            </div>
+          </div></div>
+          <div class="col-sm-3"><div class="form-group">
+            <label>Dismiss on Esc</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="keyboard" [value]="true" [(ngModel)]="keyboard">
+                True
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="keyboard" [value]="false" [(ngModel)]="keyboard">
+                False
+              </label>
+            </div>
+          </div></div>
+        </div>
+
+
+
+        <p>
+          <button class="btn btn-primary" (click)="open()">Open modal</button>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

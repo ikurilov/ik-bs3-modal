@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IkBs3ModalInstance} from '../../../src/modal-instance';
+import {IkBs3ModalInstance} from "../../../src/modal-instance";
 
 @Component({
-  selector: 'ik-long-modal',
-  templateUrl: './long-modal.component.html',
-  styleUrls: ['./long-modal.component.css']
+  selector: 'ik-modal-content',
+  templateUrl: './modal-content.component.html',
+  styleUrls: ['./modal-content.component.css']
 })
-export class LongModalComponent implements OnInit {
+export class ModalContentComponent implements OnInit {
 
   constructor(private ikModalInstance: IkBs3ModalInstance) { }
 
@@ -20,4 +20,5 @@ export class LongModalComponent implements OnInit {
   accept() {
     this.ikModalInstance.close();
   }
+
 }

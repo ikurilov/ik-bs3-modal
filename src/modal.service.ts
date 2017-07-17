@@ -56,6 +56,7 @@ export class IkBs3ModalService {
 
     ngxModalComponentInstance.component = config.component;
     ngxModalComponentInstance.inputs = config.inputs;
+    ngxModalComponentInstance.config = config.config;
 
     subscriptions.push(ngxModalComponentInstance.close.subscribe(res => {
       closeModal();

@@ -5,19 +5,24 @@ import {AppComponent} from './app.component';
 import {IkBs3Modal} from '../../src/modal.module';
 import {RouterModule} from '@angular/router';
 import { LongModalComponent } from './long-modal/long-modal.component';
+import { ModalContentComponent } from './modal-content/modal-content.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     LongModalComponent,
+    ModalContentComponent,
   ],
   imports: [
     BrowserModule,
     IkBs3Modal,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   entryComponents: [
-    LongModalComponent
+    LongModalComponent,
+    ModalContentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 <div class="modal fade" #modalWrapper tabindex="-1">
-  <!--TODO size parameter-->
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog" [ngClass]="config?.size === 'sm' ? 'modal-sm' : 'modal-lg'">
     <div #modalContent class="ik-modal-content"></div>
   </div>
 </div>

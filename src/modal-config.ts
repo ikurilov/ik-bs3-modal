@@ -1,4 +1,5 @@
 export interface IIkBs3ModalConfig {
   backdrop: boolean | 'static';
-  keyboard: boolean
+  keyboard: boolean,
+  size: 'sm' | 'lg'
 }

@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import _collection from 'lodash/collection';
 import {IkBs3ModalInstance} from '../modal-instance';
+import {IIkBs3ModalConfig} from '../modal-config';
 
 @Component({
   selector: 'ik-modal',
@@ -27,7 +28,7 @@ export class IkBs3ModalComponent implements AfterViewInit, OnDestroy {
   /*TODO закрытие модального окна по клику на подложке*/
   @ViewChild('backdrop') backdrop;
 
-  @Input() config: any;
+  @Input() config: IIkBs3ModalConfig;
   @Input() component: Component;
   @Input() inputs: any;
   @Output() close = new EventEmitter();
